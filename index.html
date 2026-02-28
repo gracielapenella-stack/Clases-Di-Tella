@@ -106,14 +106,16 @@ header.scrolled {
 .nav-cta {
   padding: 11px 26px;
   background: linear-gradient(135deg, var(--blue), var(--blue2));
-  color: white; border-radius: 50px;
+  color: #ffffff !important; border-radius: 50px;
   font-weight: 700; font-size: 14px;
   transition: all 0.4s var(--ease-expo);
   box-shadow: 0 4px 16px rgba(29,111,218,0.28);
+  text-decoration: none !important;
 }
 .nav-cta:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(29,111,218,0.4);
+  color: #ffffff !important;
 }
 
 /* ═══ HERO ═══ */
@@ -200,11 +202,12 @@ h1 {
 }
 .btn-primary {
   background: linear-gradient(135deg, var(--blue), var(--blue2));
-  color: white; box-shadow: 0 4px 20px rgba(29,111,218,0.35);
+  color: #ffffff !important; box-shadow: 0 4px 20px rgba(29,111,218,0.35);
 }
 .btn-primary:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 32px rgba(29,111,218,0.45);
+  color: #ffffff !important;
 }
 .btn-primary .arr { transition: transform 0.3s; }
 .btn-primary:hover .arr { transform: translateX(4px); }
@@ -496,10 +499,11 @@ h2 {
 .cta-final-sub { font-size: 19px; color: rgba(255,255,255,0.82); margin-bottom: 44px; line-height: 1.7; }
 .btn-white {
   display: inline-flex; align-items: center; gap: 12px;
-  padding: 20px 46px; background: white; color: var(--blue);
+  padding: 20px 46px; background: white; color: var(--blue) !important;
   border-radius: 50px; font-weight: 800; font-size: 17px;
   transition: all 0.4s var(--ease-expo);
   box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+  text-decoration: none !important;
 }
 .btn-white:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 18px 48px rgba(0,0,0,0.28); }
 .cta-trust { margin-top: 26px; font-size: 13px; color: rgba(255,255,255,0.6); }
@@ -610,17 +614,17 @@ body.dark .dark-toggle::after { content: '🌙'; left: calc(100% - 21px); }
 }
 #toast.show { transform: translateY(0); opacity: 1; }
 #toast.hide { transform: translateY(120px); opacity: 0; }
-body.dark #toast { background: #111827; border-color: #1e293b; }
+body.dark #toast { background: #1e293b; border-color: #334155; }
 .toast-text { font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.4; }
 body.dark .toast-text { color: #f0f6ff; }
 .toast-btn {
   display: inline-flex; align-items: center; gap: 8px;
   background: linear-gradient(135deg, #25d366, #128c7e);
-  color: white; border-radius: 10px; padding: 10px 14px;
-  font-weight: 700; font-size: 13px; text-decoration: none;
+  color: #ffffff !important; border-radius: 10px; padding: 10px 14px;
+  font-weight: 700; font-size: 13px; text-decoration: none !important;
   transition: transform 0.2s;
 }
-.toast-btn:hover { transform: scale(1.03); }
+.toast-btn:hover { transform: scale(1.03); color: #ffffff !important; }
 .toast-close {
   position: absolute; top: 10px; right: 12px;
   background: none; border: none; font-size: 16px;
@@ -778,7 +782,6 @@ body.dark .toast-text { color: #f0f6ff; }
     <div class="marquee-item"><span>👤</span> Individual &amp; Grupal</div>
     <div class="marquee-item"><span>🎯</span> Preparación para exámenes</div>
     <div class="marquee-item"><span>📋</span> Contabilidad Básica</div>
-    <div class="marquee-item"><span>📚</span> ICG I</div>
     <div class="marquee-item"><span>📚</span> ICG II</div>
     <div class="marquee-item"><span>🏢</span> Finanzas de la Empresa</div>
     <div class="marquee-item"><span>📊</span> Riesgo, Incertidumbre y Finanzas</div>
@@ -787,7 +790,6 @@ body.dark .toast-text { color: #f0f6ff; }
     <div class="marquee-item"><span>👤</span> Individual &amp; Grupal</div>
     <div class="marquee-item"><span>🎯</span> Preparación para exámenes</div>
     <div class="marquee-item"><span>📋</span> Contabilidad Básica</div>
-    <div class="marquee-item"><span>📚</span> ICG I</div>
     <div class="marquee-item"><span>📚</span> ICG II</div>
     <div class="marquee-item"><span>🏢</span> Finanzas de la Empresa</div>
     <div class="marquee-item"><span>📊</span> Riesgo, Incertidumbre y Finanzas</div>
@@ -809,10 +811,6 @@ body.dark .toast-text { color: #f0f6ff; }
       <div class="mat-card cont">
         <div class="mat-tag-top">Contabilidad</div>
         <div class="mat-title">Contabilidad Básica</div>
-      </div>
-      <div class="mat-card cont">
-        <div class="mat-tag-top">Contabilidad</div>
-        <div class="mat-title">ICG I</div>
       </div>
       <div class="mat-card cont">
         <div class="mat-tag-top">Contabilidad</div>
@@ -956,7 +954,7 @@ body.dark .toast-text { color: #f0f6ff; }
    style="position:fixed;bottom:28px;right:28px;width:58px;height:58px;
           background:linear-gradient(135deg,#25d366,#128c7e);border-radius:50%;
           display:flex;align-items:center;justify-content:center;font-size:26px;
-          box-shadow:0 6px 28px rgba(37,211,102,0.4);z-index:200;
+          box-shadow:0 6px 28px rgba(37,211,102,0.5);z-index:9999;
           transition:transform 0.2s;text-decoration:none;"
    onmouseover="this.style.transform='scale(1.1)'"
    onmouseout="this.style.transform='scale(1)'">💬</a>
