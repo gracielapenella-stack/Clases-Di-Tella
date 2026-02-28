@@ -296,7 +296,7 @@ h1 {
   background: white; border-radius: 16px; padding: 12px 16px;
   box-shadow: 0 8px 32px rgba(0,0,0,0.1);
   display: flex; align-items: center; gap: 10px;
-  font-weight: 700; font-size: 13px;
+  font-weight: 700; font-size: 13px; color: var(--ink);
   animation: floatBadge 4s ease-in-out infinite; z-index: 5;
 }
 .float-badge:nth-child(1) { top: 6%; right: -12%; }
@@ -304,11 +304,31 @@ h1 {
   width: 36px; height: 36px; border-radius: 10px;
   display: flex; align-items: center; justify-content: center; font-size: 18px;
 }
+body.dark .float-badge {
+  background: #1e293b;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  color: #f0f6ff;
+}
+body.dark .float-badge .fb-icon { filter: brightness(1.2); }
+
 @keyframes floatBadge { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
 @keyframes slideUp {
   from { opacity:0; transform:translateY(40px); }
   to   { opacity:1; transform:translateY(0); }
 }
+
+/* ═══ TILT CARD ═══ */
+.card-mockup {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.tilt-shine {
+  position: absolute; inset: 0; border-radius: 28px;
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.15), transparent 60%);
+  pointer-events: none; opacity: 0; transition: opacity 0.3s; z-index: 10;
+}
+.hero-visual:hover .tilt-shine { opacity: 1; }
 
 /* ═══ MARQUEE ═══ */
 .marquee-wrap {
@@ -500,6 +520,124 @@ footer { background: var(--ink); padding: 40px 0; }
 .reveal { opacity: 0; transform: translateY(36px); transition: all 0.8s var(--ease-expo); }
 .reveal.visible { opacity: 1; transform: translateY(0); }
 
+/* ═══ DARK MODE ═══ */
+body.dark {
+  --ink:    #f0f6ff;
+  --ink2:   #cbd5e1;
+  --slate:  #94a3b8;
+  --muted:  #64748b;
+  --fog:    #475569;
+  --silver: #1e293b;
+  --snow:   #0f172a;
+  --white:  #111827;
+  background: #0a0f1e;
+}
+body.dark header.scrolled { background: rgba(10,15,30,0.93); }
+body.dark .mat-card { background: #111827; border-color: #1e293b; }
+body.dark .mat-card.fin:hover  { background: #131e35; }
+body.dark .mat-card.cont:hover { background: #0e1e2e; }
+body.dark .card-mockup { background: #111827; box-shadow: 0 40px 80px rgba(0,0,0,0.5); }
+body.dark .card-body { background: #111827; }
+body.dark .materia-pill { background: rgba(255,255,255,0.04) !important; }
+body.dark .metodo-inner { background: #111827; border-color: #1e293b; }
+body.dark .step-card { border-color: #1e293b; }
+body.dark .metodo-strip { background: #111827; }
+body.dark .strip-item { border-color: #1e293b; }
+body.dark .strip-item:hover { background: rgba(29,111,218,0.1); }
+body.dark .faq-item { background: #111827; }
+body.dark .mat-bar-wrap { background: #1e293b; }
+body.dark .step-arrow { background: #111827; border-color: #1e293b; }
+
+/* ═══ DARK TOGGLE BUTTON ═══ */
+.dark-toggle {
+  width: 42px; height: 24px; border-radius: 99px;
+  background: var(--silver); border: none; cursor: pointer;
+  position: relative; transition: background 0.3s; flex-shrink: 0;
+  display: flex; align-items: center; padding: 3px;
+}
+.dark-toggle::after {
+  content: '☀️';
+  position: absolute; left: 3px;
+  width: 18px; height: 18px; border-radius: 50%;
+  background: white; font-size: 10px;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.35s var(--ease-expo);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  line-height: 18px; text-align: center;
+}
+body.dark .dark-toggle { background: var(--blue); }
+body.dark .dark-toggle::after { content: '🌙'; left: calc(100% - 21px); }
+
+/* ═══ SCROLL PROGRESS BAR ═══ */
+#scroll-bar {
+  position: fixed; top: 0; left: 0; height: 3px; z-index: 9999;
+  background: linear-gradient(90deg, var(--blue), var(--sky), var(--cyan));
+  width: 0%; transition: width 0.1s linear;
+  border-radius: 0 2px 2px 0;
+  box-shadow: 0 0 8px rgba(56,189,248,0.6);
+}
+
+/* ═══ TYPEWRITER ═══ */
+.typewriter-cursor {
+  display: inline-block; width: 3px; height: 0.85em;
+  background: var(--blue); margin-left: 2px;
+  vertical-align: middle; border-radius: 1px;
+  animation: blink 0.8s ease-in-out infinite;
+}
+
+/* ═══ ANIMATED GRADIENT CTA ═══ */
+@keyframes gradientShift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.cta-final {
+  background: linear-gradient(-45deg, #1d6fda, #1558c0, #0369a1, #0ea5e9, #06b6d4) !important;
+  background-size: 400% 400% !important;
+  animation: gradientShift 6s ease infinite !important;
+}
+
+/* ═══ TOAST ═══ */
+#toast {
+  position: fixed; bottom: 100px; right: 28px; z-index: 9000;
+  background: white; border-radius: 20px;
+  padding: 16px 20px; max-width: 280px;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.15);
+  border: 1px solid var(--silver);
+  display: flex; flex-direction: column; gap: 10px;
+  transform: translateY(120px); opacity: 0;
+  transition: all 0.5s var(--ease-expo);
+}
+#toast.show { transform: translateY(0); opacity: 1; }
+#toast.hide { transform: translateY(120px); opacity: 0; }
+body.dark #toast { background: #111827; border-color: #1e293b; }
+.toast-text { font-size: 14px; font-weight: 600; color: var(--ink); line-height: 1.4; }
+body.dark .toast-text { color: #f0f6ff; }
+.toast-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: white; border-radius: 10px; padding: 10px 14px;
+  font-weight: 700; font-size: 13px; text-decoration: none;
+  transition: transform 0.2s;
+}
+.toast-btn:hover { transform: scale(1.03); }
+.toast-close {
+  position: absolute; top: 10px; right: 12px;
+  background: none; border: none; font-size: 16px;
+  color: var(--fog); cursor: pointer; line-height: 1;
+}
+
+/* ═══ CONFETTI ═══ */
+#confetti-canvas {
+  position: fixed; inset: 0; z-index: 9998;
+  pointer-events: none;
+}
+
+/* ═══ PARTICLES ═══ */
+#particles-canvas {
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+}
+
 /* ═══ RESPONSIVE ═══ */
 @media (max-width: 960px) {
   .hero .container { grid-template-columns: 1fr; text-align: center; }
@@ -525,7 +663,8 @@ footer { background: var(--ink); padding: 40px 0; }
   .hero-actions { flex-direction: column; width: 100%; }
   .card-mockup { width: 290px; }
   .metodo-strip { grid-template-columns: repeat(2,1fr); }
-  .materias-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .materias-grid { grid-template-columns: 1fr; }
+  .mat-title { font-size: 20px; }
 }
 </style>
 </head>
@@ -542,7 +681,10 @@ footer { background: var(--ink); padding: 40px 0; }
       <a href="#materias" class="nav-link">Materias</a>
       <a href="#metodo" class="nav-link">Método</a>
     </div>
-    <a href="https://wa.me/5491150227179?text=Hola!%20Me%20interesa%20tomar%20clases%20particulares" class="nav-cta" target="_blank">Escribime →</a>
+    <div style="display:flex;align-items:center;gap:14px;">
+      <button class="dark-toggle" id="darkToggle" title="Modo oscuro"></button>
+      <a href="https://wa.me/5491150227179?text=Hola!%20Me%20interesa%20tomar%20clases%20particulares" class="nav-cta" target="_blank">Escribime →</a>
+    </div>
   </div>
 </header>
 
@@ -551,6 +693,7 @@ footer { background: var(--ink); padding: 40px 0; }
   <div class="hero-bg">
     <div class="orb"></div><div class="orb"></div><div class="orb"></div>
     <div class="hero-grid"></div>
+    <canvas id="particles-canvas"></canvas>
   </div>
   <div class="container">
     <div class="hero-content">
@@ -558,7 +701,7 @@ footer { background: var(--ink); padding: 40px 0; }
         <span class="tag-dot"></span>
         Preparación para finales · UTDT
       </div>
-      <h1>Aprobá en <span class="highlight">Di Tella</span><span class="h1-line2">con confianza</span></h1>
+      <h1>Aprobá en <span class="highlight" id="typewriter-target"></span><span class="typewriter-cursor" id="tw-cursor"></span><span class="h1-line2">con confianza</span></h1>
       <p class="hero-sub">Clases particulares de Contabilidad, Finanzas, Economía y Estadística para alumnos de la Universidad Torcuato Di Tella. Online y presencial.</p>
       <div class="hero-actions">
         <a href="https://wa.me/5491150227179?text=Hola!%20Me%20interesa%20tomar%20clases%20particulares" class="btn btn-primary" target="_blank">
@@ -590,7 +733,8 @@ footer { background: var(--ink); padding: 40px 0; }
           <div>RIF — 10/10</div>
         </div>
       </div>
-      <div class="card-mockup">
+      <div class="card-mockup" id="tiltCard">
+        <div class="tilt-shine" id="tiltShine"></div>
         <div class="card-header">
           <div class="card-header-top">
             <div class="card-logo">Clases Di Tella</div>
@@ -817,6 +961,25 @@ footer { background: var(--ink); padding: 40px 0; }
    onmouseover="this.style.transform='scale(1.1)'"
    onmouseout="this.style.transform='scale(1)'">💬</a>
 
+<!-- SCROLL PROGRESS -->
+<div id="scroll-bar"></div>
+
+<!-- CONFETTI -->
+<canvas id="confetti-canvas"></canvas>
+
+<!-- TOAST -->
+<div id="toast">
+  <button class="toast-close" onclick="closeToast()">✕</button>
+  <div class="toast-text">👋 ¡Hola! ¿Tenés un final cerca?</div>
+  <a href="https://wa.me/5491150227179?text=Hola!%20Me%20interesa%20tomar%20clases%20particulares" class="toast-btn" target="_blank">
+    💬 Escribime ahora →
+  </a>
+</div>
+
+<!-- CURSOR -->
+<div id="cursor-dot"></div>
+<div id="cursor-ring"></div>
+
 <script>
 document.getElementById('yr').textContent = new Date().getFullYear();
 
@@ -830,6 +993,148 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
+
+// ── DARK MODE ──
+const darkToggle = document.getElementById('darkToggle');
+darkToggle.addEventListener('click', () => {
+  document.body.classList.toggle('dark');
+  localStorage.setItem('dark', document.body.classList.contains('dark'));
+});
+if (localStorage.getItem('dark') === 'true') document.body.classList.add('dark');
+
+// ── SCROLL PROGRESS BAR ──
+const scrollBar = document.getElementById('scroll-bar');
+window.addEventListener('scroll', () => {
+  const pct = (scrollY / (document.body.scrollHeight - innerHeight)) * 100;
+  scrollBar.style.width = pct + '%';
+});
+
+// ── TYPEWRITER ──
+const twTarget = document.getElementById('typewriter-target');
+const twCursor = document.getElementById('tw-cursor');
+const words = ['Di Tella', 'Contabilidad', 'Finanzas', 'Di Tella'];
+let wi = 0, ci = 0, deleting = false;
+function typeWriter() {
+  const word = words[wi];
+  if (!deleting) {
+    twTarget.textContent = word.slice(0, ++ci);
+    if (ci === word.length) {
+      if (wi === words.length - 1) { twCursor.style.display = 'none'; return; }
+      setTimeout(() => { deleting = true; typeWriter(); }, 1800);
+      return;
+    }
+  } else {
+    twTarget.textContent = word.slice(0, --ci);
+    if (ci === 0) {
+      deleting = false;
+      wi = (wi + 1) % words.length;
+    }
+  }
+  setTimeout(typeWriter, deleting ? 60 : 100);
+}
+setTimeout(typeWriter, 1200);
+
+// ── CONFETTI ──
+const cCanvas = document.getElementById('confetti-canvas');
+const cCtx = cCanvas.getContext('2d');
+cCanvas.width = innerWidth; cCanvas.height = innerHeight;
+window.addEventListener('resize', () => { cCanvas.width = innerWidth; cCanvas.height = innerHeight; });
+const colors = ['#1d6fda','#38bdf8','#06b6d4','#0ea5e9','#ffffff','#93c5fd'];
+let confettis = [];
+class Confetti {
+  constructor() {
+    this.x = Math.random() * cCanvas.width;
+    this.y = -10;
+    this.r = Math.random() * 6 + 3;
+    this.color = colors[Math.floor(Math.random() * colors.length)];
+    this.vx = (Math.random() - 0.5) * 3;
+    this.vy = Math.random() * 4 + 2;
+    this.angle = Math.random() * 360;
+    this.spin = (Math.random() - 0.5) * 8;
+    this.shape = Math.random() > 0.5 ? 'rect' : 'circle';
+  }
+  update() { this.x += this.vx; this.y += this.vy; this.angle += this.spin; }
+  draw() {
+    cCtx.save();
+    cCtx.translate(this.x, this.y);
+    cCtx.rotate(this.angle * Math.PI / 180);
+    cCtx.fillStyle = this.color;
+    cCtx.globalAlpha = 0.85;
+    if (this.shape === 'rect') { cCtx.fillRect(-this.r, -this.r/2, this.r*2, this.r); }
+    else { cCtx.beginPath(); cCtx.arc(0, 0, this.r/2, 0, Math.PI*2); cCtx.fill(); }
+    cCtx.restore();
+  }
+}
+let confettiActive = true;
+for (let i = 0; i < 120; i++) setTimeout(() => confettis.push(new Confetti()), i * 25);
+function animConfetti() {
+  cCtx.clearRect(0, 0, cCanvas.width, cCanvas.height);
+  confettis = confettis.filter(c => c.y < cCanvas.height + 20);
+  confettis.forEach(c => { c.update(); c.draw(); });
+  if (confettis.length > 0) requestAnimationFrame(animConfetti);
+  else cCanvas.style.display = 'none';
+}
+animConfetti();
+
+// ── TOAST ──
+const toast = document.getElementById('toast');
+function closeToast() { toast.classList.remove('show'); toast.classList.add('hide'); }
+setTimeout(() => toast.classList.add('show'), 4000);
+setTimeout(() => closeToast(), 12000);
+
+// ── PARTICLES ──
+const canvas = document.getElementById('particles-canvas');
+const ctx = canvas.getContext('2d');
+function resizeCanvas() { canvas.width = canvas.offsetWidth; canvas.height = canvas.offsetHeight; }
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.r = Math.random() * 1.8 + 0.4;
+    this.vx = (Math.random() - 0.5) * 0.4;
+    this.vy = (Math.random() - 0.5) * 0.4;
+    this.alpha = Math.random() * 0.5 + 0.1;
+  }
+  update() {
+    this.x += this.vx; this.y += this.vy;
+    if (this.x < 0 || this.x > canvas.width || this.y < 0 || this.y > canvas.height) this.reset();
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(56,189,248,${this.alpha})`;
+    ctx.fill();
+  }
+}
+const particles = [];
+for (let i = 0; i < 80; i++) particles.push(new Particle());
+function drawLines() {
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 100) {
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = `rgba(29,111,218,${0.12 * (1 - dist/100)})`;
+        ctx.lineWidth = 0.6;
+        ctx.stroke();
+      }
+    }
+  }
+}
+function animParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawLines();
+  particles.forEach(p => { p.update(); p.draw(); });
+  requestAnimationFrame(animParticles);
+}
+animParticles();
 
 // ── COUNTER ANIMATION ──
 function animateCounter(el) {
@@ -857,12 +1162,6 @@ const gridObs = new IntersectionObserver((entries, observer) => {
           card.style.transition = 'opacity 0.5s ease, transform 0.5s cubic-bezier(0.16,1,0.3,1)';
           card.style.opacity = '1';
           card.style.transform = 'translateY(0)';
-          // animate progress bar
-          const bar = card.querySelector('.mat-bar');
-          if (bar) {
-            const target = bar.getAttribute('data-w');
-            setTimeout(() => { bar.style.width = target; }, 200);
-          }
         }, i * 80);
       });
       observer.unobserve(entry.target);
@@ -881,6 +1180,39 @@ const obs = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// ── TILT CARD ──
+const tiltCard = document.getElementById('tiltCard');
+const tiltShine = document.getElementById('tiltShine');
+if (tiltCard) {
+  tiltCard.addEventListener('mousemove', e => {
+    const rect = tiltCard.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+    const rx = ((e.clientY - cy) / rect.height) * -18;
+    const ry = ((e.clientX - cx) / rect.width) * 18;
+    tiltCard.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg) scale(1.03)`;
+    const px = ((e.clientX - rect.left) / rect.width) * 100;
+    const py = ((e.clientY - rect.top) / rect.height) * 100;
+    tiltShine.style.background = `radial-gradient(circle at ${px}% ${py}%, rgba(255,255,255,0.18), transparent 60%)`;
+    tiltShine.style.opacity = '1';
+  });
+  tiltCard.addEventListener('mouseleave', () => {
+    tiltCard.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale(1)';
+    tiltShine.style.opacity = '0';
+  });
+}
+
+// ── PARALLAX HERO ──
+const heroContent = document.querySelector('.hero-content');
+const heroVisual  = document.querySelector('.hero-visual');
+window.addEventListener('scroll', () => {
+  const y = scrollY;
+  if (y < window.innerHeight) {
+    if (heroContent) heroContent.style.transform = `translateY(${y * 0.12}px)`;
+    if (heroVisual)  heroVisual.style.transform  = `translateY(${y * 0.06}px)`;
+  }
+});
 
 setTimeout(() => {
   document.querySelectorAll('.hero-stats [data-count]').forEach(animateCounter);
